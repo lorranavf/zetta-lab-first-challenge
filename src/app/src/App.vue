@@ -1,31 +1,25 @@
 <template>
-  <div class="container py-4">
-    <h1>Meu App Vue</h1>
-    <p>Se você vê isto, o app está funcionando</p>
+  <div id="app" class="d-flex flex-column min-vh-100">
+    <Header />
+    <main>
+      <router-view />
+    </main>
+    <Footer />
   </div>
-  <div id="app" class="container py-4">
-  <button @click="count++">
-    Count is: {{ count }}
-  </button>
-</div>
 </template>
 
 <script lang="ts">
+
+import Header from './components/header.vue'
+import Footer from './components/footer.vue'
+
+
 export default {
   name: 'App',
+  components: { Header, Footer },
   data() {
-    return {
-      count: 0
-    }
+    return {}
   }
 }
 </script>
-
-<style scoped>
-.container { text-align: center; }
-button {
-  font-weight: bold;
-  align-items: center;
-}
-</style>
 

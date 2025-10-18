@@ -1,0 +1,30 @@
+
+.navbar { 
+    margin-bottom: 1rem; 
+}
+.container { 
+    text-align: center; 
+}
+footer { 
+    position: relative; 
+    bottom: 0; 
+    width: 100%; 
+}
+.img { 
+    width: 100%;
+    height: 200px;
+    border-radius: 3%;
+    object-fit: cover;
+}
+.card { 
+    cursor: default; 
+    border: None;
+}
+.text { 
+    margin-left: 5px;
+    text-align: justify; 
+}
+button {
+  font-weight: bold;
+  align-items: center;
+}

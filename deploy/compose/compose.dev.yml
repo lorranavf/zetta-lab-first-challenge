@@ -1,0 +1,21 @@
+services:
+  frontend:
+    build:
+      context: ../..
+      dockerfile: deploy/docker/Dockerfile
+    volumes:
+      - ../../src/app:/app 
+      - node_modules:/app/node_modules
+    ports:
+      - "8000:8000"
+    networks:
+      - net
+    environment:
+      - NODE_ENV=development
+
+networks:
+  net:
+    driver: bridge
+
+volumes:
+  node_modules:

@@ -2,14 +2,7 @@
   <div id="app" class="d-flex flex-column min-vh-100">
     <Header />
     <main class="container py-4 flex-grow-1">
-      <h1>Meu App Vue</h1>
-      <p>Se você vê isto, o app está funcionando</p>
-
-      <div class="text-center my-4">
-        <button class="btn btn-primary" @click="count++">
-          Count is: {{ count }}
-        </button>
-      </div>
+      <router-view />
     </main>
     <Footer />
   </div>

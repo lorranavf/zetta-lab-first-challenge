@@ -1,0 +1,5 @@
+- [x] iniciar repositorio (readme, makefile, deploy, source, todo)
+- [x] estabelecer ambiente de inicialização com app mínimo
+- [] separar componentes da aplicação (script, styles, template, menu, rodapé, view_all, view_id)
+- [] selecionar api, documentar acesso à api
+- [] criar módulos da api

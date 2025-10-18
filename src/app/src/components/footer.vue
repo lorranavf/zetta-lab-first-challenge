@@ -7,9 +7,3 @@
     </div>
   </footer>
 </template>
-
-<script lang="ts" setup></script>
-
-<style scoped>
-footer { position: relative; bottom: 0; width: 100%; }
-</style>

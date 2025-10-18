@@ -23,9 +23,3 @@
     </div>
   </nav>
 </template>
-
-<script lang="ts" setup></script>
-
-<style scoped>
-.navbar { margin-bottom: 1rem; }
-</style>

@@ -2,27 +2,27 @@
   <div class="container py-4">
     <h2>Catálogo de Culturas</h2>
     <div class="row">
-      <div class="col-md-4 mb-3" v-for="it in items" :key="getId(it)">
+      <div class="col-md-4 mb-3" v-for="item in items" :key="getId(item)">
         <div class="card h-100">
           <div class="card-body d-flex flex-column">
-            <h5 class="card-title">{{ getName(it) }}</h5>
+            <h5 class="card-title">{{ getItemAttribute(item, 'name') }}</h5>
 
-            <div class="img-wrapper mt-2">
-              <img :src="imgFor(it)" class="thumb-img" :alt="getName(it)" />
+            <div>
+              <img :src="imgFor(item)" class="img" :alt="getItemAttribute(item, 'name')" />
             </div>
             <br/>
+
             <div class="card-text flex-grow-1">
-                <p class="text"><strong>Nome científico:</strong> <em>{{ getScientific(it) }}</em></p>
-                <p class="text"><strong>Família:</strong> <em>{{ getFamily(it) }}</em></p>
-                <p class="text"><strong>Descrição:</strong> <em>{{ getDescription(it) }}</em></p>
+                <p class="text"><strong>Nome científico:</strong> <em>{{ getItemAttribute(item, 'scientific_name') }}</em></p>
+                <p class="text"><strong>Família:</strong> <em>{{ getItemAttribute(item, 'family') }}</em></p>
+                <p class="text"><strong>Descrição:</strong> <em>{{ getItemAttribute(item, 'description') }}</em></p>
             </div>
         
             <div class="mt-auto d-flex justify-content-end mt-3">
-              <button class="btn btn-primary" @click="viewOnly(getId(it))">
+              <button class="btn btn-primary" @click="viewOnly(getId(item))">
                 Ver mais
               </button>
             </div>
-
 
           </div>
         </div>
@@ -32,39 +32,12 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
-import data from '../data/data.json'
+import { useRouting, getData } from './scripts/helpers.ts'
 
-const images = import.meta.glob('../data/images/*', { eager: true, as: 'url' }) as Record<string, string>
-const items = ref(Array.isArray(data) ? data : [])
-const expanded = ref<number | null>(null)
+const { go } = useRouting()
+const { items, imgFor, getId, getItemAttribute } = getData()
 
-const router = useRouter()
+function viewOnly(id: number | null) { if (!id) return; go(`/item/${id}`) }
 
-const getId = (it: any) => it.id ?? null
-const getName = (it: any) => it.name ?? ''
-const getScientific = (it: any) => it.scientific_name ?? ''
-const getFamily = (it: any) => it.family ?? ''
-const getDescription = (it: any) => it.description ?? ''
-
-function basename(p: string) { if (!p) return '' ; return p.split('/').pop() ?? p }
-
-const imgFor = (it: any) => {
-  const p = it.arquivo ?? it.file ?? ''
-  const name = basename(p)
-  const key = `../data/images/${name}`
-  if (images[key]) return images[key]
-  if (p.startsWith('/')) return p
-  return '/' + p
-}
-
-function viewOnly(id: number | null) { if (id === null) return; router.push({ path: `/item/${id}` }) }
 </script>
 
-<style scoped>
-.img-wrapper { height: 180px; overflow: hidden; display:flex; align-items:center; justify-content:center; background:#f8f9fa; border-radius:6px; }
-.thumb-img { width:100%; height:100%; object-fit:cover; display:block; }
-.card { cursor: default; }
-.text { text-align: justify; }
-</style>

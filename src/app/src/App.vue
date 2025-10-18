@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="d-flex flex-column min-vh-100">
     <Header />
-    <main class="container py-4 flex-grow-1">
+    <main>
       <router-view />
     </main>
     <Footer />
@@ -13,22 +13,13 @@
 import Header from './components/header.vue'
 import Footer from './components/footer.vue'
 
+
 export default {
   name: 'App',
   components: { Header, Footer },
   data() {
-    return {
-      count: 0
-    }
+    return {}
   }
 }
 </script>
-
-<style scoped>
-.container { text-align: center; }
-button {
-  font-weight: bold;
-  align-items: center;
-}
-</style>
 

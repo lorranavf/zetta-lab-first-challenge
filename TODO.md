@@ -4,3 +4,4 @@
 - [x] reorganizar scripts, templates, and styles 
 - [] selecionar api, documentar acesso à api
 - [] criar módulos da api
+- [] helper somente para funções de facilitação, criar arquivo service (fix)

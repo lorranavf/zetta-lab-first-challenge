@@ -15,11 +15,22 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Sobre</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Contato</a></li>
+          <li class="nav-item"><a class="nav-link" href="#" @click.prevent="goToPage('/')">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#" @click.prevent="goToPage('/top-movies')">Filmes Conceituados</a></li>
+          <li class="nav-item"><a class="nav-link" href="#" @click.prevent="goToPage('/popular-movies')">Filmes Populares</a></li>
+          <li class="nav-item"><a class="nav-link" href="#" @click.prevent="goToPage('/favorite-movies')">Filmes Favoritos</a></li>
         </ul>
       </div>
     </div>
   </nav>
 </template>
+
+<script setup lang="ts">
+
+import { useRouting } from './scripts/router.ts'
+
+const { go } = useRouting()
+
+function goToPage(route: string) { go(route) }
+
+</script>

@@ -6,6 +6,8 @@ services:
     volumes:
       - ../../src/app:/app 
       - node_modules:/app/node_modules
+    env_file:
+      - ../../deploy/environment/the_movie_db_api_key.env
     ports:
       - "8000:8000"
     networks:

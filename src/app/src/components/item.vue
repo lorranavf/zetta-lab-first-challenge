@@ -36,7 +36,8 @@
 
 <script lang="ts" setup>
 
-import { useRouting, getData } from './scripts/helpers.ts'
+import { getData } from './scripts/helpers.ts'
+import { useRouting } from './scripts/router.ts'
 
 const { route, go } = useRouting()
 const { imgFor, findById, getItemAttribute } = getData()

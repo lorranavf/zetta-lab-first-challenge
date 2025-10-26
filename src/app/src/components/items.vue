@@ -32,7 +32,9 @@
 </template>
 
 <script lang="ts" setup>
-import { useRouting, getData } from './scripts/helpers.ts'
+
+import { getData } from './scripts/helpers.ts'
+import { useRouting } from './scripts/router.ts'
 
 const { go } = useRouting()
 const { items, imgFor, getId, getItemAttribute } = getData()

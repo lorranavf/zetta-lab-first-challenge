@@ -1,0 +1,19 @@
+.pagination {
+    margin-top: 0.5rem;
+    background-color: none;
+
+    .button-page {
+        margin: 0 0.25rem;
+        border-radius: 10%;
+        border-color: #cccccc;
+        background-color: #cccccc;
+        cursor: pointer;
+        font-size: 1rem;
+
+        &:disabled {
+            background-color: #cccccc;
+            border: none;
+            cursor: not-allowed;
+        }
+    }
+}

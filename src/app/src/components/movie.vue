@@ -3,6 +3,7 @@
 
     <div v-if="loading" class="movie-feedback">Carregando detalhes...</div>
     <div v-else-if="!movie.id" class="movie-feedback">Filme não encontrado.</div>
+
     <div v-else class="movie-grid">
       <div class="poster-wrapper">
         <img
@@ -28,9 +29,14 @@
           <dt>Gêneros</dt>
           <dd>{{ movie.genres.map((g: any) => g.name).join(', ') }}</dd>
         </dl>
-        <p v-if="movie.overview" class="overview">Sinopse:{{ movie.overview }}</p>
+        <p v-if="movie.overview" class="overview">
+          <strong>Sinopse:</strong> {{ movie.overview }}
+        </p>
       </div>
     </div>
+
+    <!-- others -->
+
   </div>
 </template>
 
@@ -92,29 +98,34 @@ export default defineComponent({
   border-radius: 0.5rem;
 }
 
-.movie-info h2 {
-  margin-bottom: 0.5rem;
-}
+.movie-info {
+  .h2 {
+    margin-bottom: 0.5rem;
+  }
 
-.movie-info p {
-  margin-bottom: 0.5rem;
-}
+  p {
+    margin-bottom: 0.5rem;
+    text-align: justify;
+  }
 
-.movie-info dl {
-  margin: 0.75rem 0 0;
-}
+  dl {
+    text-align: left;
+    margin: 0.75rem 0 0;
+  }
 
-.movie-info dt {
-  font-weight: 600;
-}
+  dt {
+    font-weight: 600;
+  }
 
-.overview {
-  margin-top: 1rem;
-  line-height: 1.6;
-}
+  .overview {
+    margin-top: 1rem;
+    line-height: 1.6;
+    text-align: justify;
+  }
 
-.movie-feedback {
-  padding: 2rem 0;
-  text-align: center;
+  .movie-feedback {
+    padding: 2rem 0;
+    text-align: center;
+  }
 }
 </style>

@@ -1,4 +1,3 @@
-// import { tmdbRequest } from '../scripts/service'
 import axios, { AxiosRequestConfig } from 'axios'
 
 export const TMDB_BASE = 'https://api.themoviedb.org/3'
@@ -48,8 +47,17 @@ export interface Movie {
   release_date?: string
   vote_average?: number
   poster_path?: string | null
-
   [key: string]: any
+}
+
+export interface Review {
+  author: string
+  content: string
+  url: string
+  created_at: string
+  updated_at: string
+  [key: string]: any
+
 }
 
 export async function getResponseMovies(page = 1, tmdb_url: string): Promise<PaginatedResponse> {
@@ -85,3 +93,21 @@ export async function getMovieDetails(movieId: number): Promise<Movie | null> {
     return null
   }
 }
+
+export async function getResponseMovieReviews(movieId: number, page = 1): Promise<{ page: number; results: Review[] }> {
+  try {
+    const response = await tmdbRequest(tmdbURLS.MovieReviews(movieId), { language: 'pt-BR', page })
+    const reviewsPage = {
+      page: response?.page ?? 1,
+      total_pages: response?.total_pages ?? 0,
+      total_results: response?.total_results ?? 0,
+      results: Array.isArray(response?.results) ? response.results : [],
+    }
+    return reviewsPage
+  } catch (err) {
+    console.error(`Erro ao buscar reviews do filme com ID ${movieId}:`, err)
+    return { page: 1, total_pages: 0, total_results: 0, results: [] }
+  }
+}
+
+

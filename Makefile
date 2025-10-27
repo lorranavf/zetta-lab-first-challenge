@@ -18,3 +18,6 @@ restart:
 	docker compose -p zettalab -f deploy/compose/compose.dev.yml build --no-cache
 	docker compose -p zettalab -f deploy/compose/compose.dev.yml up -d
 	make clean-docker
+
+git-undo-last-commit:
+	git reset --hard HEAD~1

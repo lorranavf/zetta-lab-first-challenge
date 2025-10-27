@@ -37,11 +37,14 @@
     }
     
     .card-text {
-      text-align: left;
       margin-top: 1rem !important;
 
+        .title {
+          text-align: center;
+        }
+
         .overview {
-            @include text-clamp(3);
+            @include text-clamp(4);
             text-align: justify;
         }
     }

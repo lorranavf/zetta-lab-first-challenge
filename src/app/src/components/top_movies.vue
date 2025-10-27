@@ -2,7 +2,7 @@
     
   <div class="container">
     
-    <h1>Filmes mais bem avaliados</h1>
+    <h1>Filmes Conceituados</h1>
 
     <div class="row">
       <div v-if="loading">Carregando filmes...</div>
@@ -18,11 +18,14 @@
                 :alt="movie.title"
               />
               <div class="card-text">
-                <h6>{{ movie.title }}</h6>
-                <p><strong>id:</strong> {{ movie.id }}</p>
-                <p>Data de lançamento: {{ formatDate(movie.release_date) }}</p>
-                <p>Nota: {{ roundVote(movie.vote_average) }}</p>
+                <h6 class="title">{{ movie.title }}</h6>
                 <p class="overview">{{ movie.overview }}</p>
+              </div>
+
+              <div class="mt-auto d-flex justify-content-end mt-3">
+                <button class="btn btn-primary" @click="viewMovieDetails(movie.id)">
+                  + Ver mais
+                </button>
               </div>
             </div>
           </div>
@@ -33,52 +36,47 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script lang="ts" setup>
+import { ref, onMounted } from 'vue'
 import { Movie, getTopRatedMovies } from './scripts/tmdb_services'
 import { getPosterUrl, formatDate, roundVote } from './scripts/tmdb_utils'
-
+import { useRouting } from './scripts/router'
 import Pagination from './pagination.vue'
 
-export default defineComponent({
-  name: 'PopularMoviesPaginated',
-    components: {
-        Pagination,
-    },
-  data() {
-    return {
-      movies: [] as Movie[],
-      loading: true,
-      currentPage: 1,
-      totalPages: 0,
-    }
-  },
-  methods: {
-    getPosterUrl,
-    formatDate,
-    roundVote,
-    async fetchTopRatedMovies(page = 1) {
-      this.loading = true
-      try {
-        const response = await getTopRatedMovies(page)
-        this.movies = response.results
-        this.totalPages = response.total_pages
-        this.currentPage = page
-      } catch (error) {
-        console.error('Erro ao buscar filmes mais bem avaliados:', error)
-        this.movies = []
-        this.totalPages = 0
-      } finally {
-        this.loading = false
-      }
-    },
-    changePage(page: number) {
-      if (page < 1 || page > this.totalPages || page === this.currentPage) return
-      void this.fetchTopRatedMovies(page)
-    },
-  },
-  async created() {
-    await this.fetchTopRatedMovies()
-  },
+const movies = ref<Movie[]>([])
+const loading = ref(true)
+const currentPage = ref(1)
+const totalPages = ref(0)
+
+const { go } = useRouting()
+
+const viewMovieDetails = (movieId: number) => {
+  go(`/movie/${movieId}`)
+}
+
+const fetchTopMovies = async (page = 1) => {
+  loading.value = true
+  try {
+    const response = await getTopRatedMovies(page)
+    movies.value = response.results
+    totalPages.value = response.total_pages
+    currentPage.value = response.page ?? page
+  } catch (error) {
+    console.error('Erro ao buscar filmes mais bem avaliados:', error)
+    movies.value = []
+    totalPages.value = 0
+    currentPage.value = page
+  } finally {
+    loading.value = false
+  }
+}
+
+const changePage = (page: number) => {
+  if (page < 1 || page > totalPages.value || page === currentPage.value) return
+  void fetchTopMovies(page)
+}
+
+onMounted(() => {
+  void fetchTopMovies()
 })
 </script>

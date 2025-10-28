@@ -4,10 +4,3 @@
         <h3>Explore os filmes mais bem avaliados e populares, e gerencie seus filmes favoritos!</h3>
     </div>
 </template>
-
-<style scoped>
-h1, h3 {
-    color: white;
-    text-align: center;
-}
-</style>

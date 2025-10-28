@@ -17,6 +17,8 @@
 
       <div class="movie-info">
         <h2>{{ movie.title }}</h2>
+        
+
         <p><strong>Data de lançamento:</strong> {{ formatDate(movie.release_date) }}</p>
         <p><strong>Nota média:</strong> {{ roundVote(movie.vote_average) }}</p>
         
@@ -32,7 +34,16 @@
         <p v-if="movie.overview" class="overview">
           <strong>Sinopse:</strong> {{ movie.overview }}
         </p>
+
+        <div class="card-actions">
+        <button class="btn btn-primary bg-dark border-dark" @click="handleFavoriteToggle(movie.id)">
+          <small>{{ isMovieFavorited(movie.id) ? 'Desfavoritar | ❤️' : 'Favoritar | 🤍' }}</small>
+        </button>
+        </div>
+
       </div>
+
+      
     </div>
 
     <!-- others -->
@@ -44,6 +55,15 @@
 import { defineComponent } from 'vue'
 import { Movie, getMovieDetails } from './scripts/tmdb_services'
 import { getPosterUrl, formatDate, roundVote } from './scripts/tmdb_utils'
+import { loadFavorites, saveFavoriteMovie, removeFavoriteMovie, isMovieFavorited } from './scripts/local_services'
+
+const handleFavoriteToggle = (movieId: number) => {
+  if (isMovieFavorited(movieId)) {
+    removeFavoriteMovie(movieId)
+  } else {
+    saveFavoriteMovie(movieId)
+  }
+}
 
 export default defineComponent({
   name: 'Movie',
@@ -57,11 +77,14 @@ export default defineComponent({
     getPosterUrl,
     formatDate,
     roundVote,
+    handleFavoriteToggle,
+    isMovieFavorited,
   },
   async created() {
     try {
       const movieId = Number(this.$route.params.id)
       this.movie = movieId ? await getMovieDetails(movieId) ?? {} : {}
+      loadFavorites()
     } finally {
       this.loading = false
     }

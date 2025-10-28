@@ -17,10 +17,11 @@
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
 import { useRouting } from './scripts/router'
-import { Movie, getResponseMovies } from './scripts/tmdb_services'
+import { Movie } from './scripts/tmdb_types'
+import { getResponseMovies } from './scripts/tmdb_services'
 
 import Pagination from './pagination.vue'
-import MovieCard from './movie_card.vue'
+import MovieCard from './movies.vue'
 
 const movies = ref<Movie[]>([])
 const loading = ref(true)

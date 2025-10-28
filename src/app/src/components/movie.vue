@@ -48,7 +48,8 @@
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
 import { useRouting } from './scripts/router'
-import { Movie, getMovieDetails } from './scripts/tmdb_services'
+import { Movie } from './scripts/tmdb_types'
+import { getMovieDetails } from './scripts/tmdb_services'
 import { getPosterUrl, formatDate, roundVote } from './scripts/tmdb_utils'
 import { loadFavorites, saveFavoriteMovie, removeFavoriteMovie, isMovieFavorited } from './scripts/local_services'
 

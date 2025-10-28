@@ -1,4 +1,5 @@
 import axios, { AxiosRequestConfig } from 'axios'
+import { Movie, PaginatedResponse, Review } from './tmdb_types'
 
 export const TMDB_BASE = 'https://api.themoviedb.org/3'
 export const TMDB_BEARER = (import.meta as any).env?.VITE_TMDB_API_KEY?? ''
@@ -33,32 +34,6 @@ const tmdbURLS = {
   SimilarMovies: (movieId: number) => `/movie/${movieId}/similar`,
 } as const
 
-
-interface PaginatedResponse {
-  page: number
-  total_pages: number
-  total_results: number
-  results: Movie[]
-}
-
-export interface Movie {
-  id: number
-  title: string
-  release_date?: string
-  vote_average?: number
-  poster_path?: string | null
-  [key: string]: any
-}
-
-export interface Review {
-  author: string
-  content: string
-  url: string
-  created_at: string
-  updated_at: string
-  [key: string]: any
-
-}
 
 export async function getResponseMovies(page = 1, tmdb_url: string): Promise<PaginatedResponse> {
   try {

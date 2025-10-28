@@ -17,11 +17,18 @@
     padding-left: 0.75rem;
     margin-bottom: 1.5rem !important;
 
-    @media (min-width: 768px) {
+      @media (min-width: 576px) {
+        flex: 0 0 auto;
+        width: 50%;
+      }
 
-        flex: 0 0 auto;    
+      @media (min-width: 992px) {
+        width: 33.3333%;
+      }
+
+      @media (min-width: 1200px) {
         width: 25%;
-    }
+      }
     }
 
     .card { 

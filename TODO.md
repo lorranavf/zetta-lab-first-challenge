@@ -3,7 +3,7 @@
 - [x] separar componentes da aplicação (menu, rodapé, view_all, view_id)
 - [x] reorganizar scripts, templates, and styles 
 - [x] selecionar api, 
-- [ ] documentar acesso à api
+- [x] documentar acesso à api
 - [x] criar módulos da api
 - [x] helper somente para funções de facilitação, criar arquivo service (fix)
-- [ ] refactorar código
+- [x] refactorar código

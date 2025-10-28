@@ -1,0 +1,72 @@
+@mixin text-clamp($lines: 3) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.movies-grid{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+    .columns {
+    width: 100%;
+    position: relative; 
+    padding-right: 0.75rem; 
+    padding-left: 0.75rem;
+    margin-bottom: 1.5rem !important;
+
+      @media (min-width: 576px) {
+        flex: 0 0 auto;
+        width: 50%;
+      }
+
+      @media (min-width: 992px) {
+        width: 33.3333%;
+      }
+
+      @media (min-width: 1200px) {
+        width: 25%;
+      }
+    }
+
+    .card { 
+        cursor: default; 
+        border: none;
+    }
+
+    .card-body {
+      flex: 1 1 auto; 
+      padding: 1rem; 
+      display: flex !important; 
+      flex-direction: column !important; 
+    }
+    
+    .card-text {
+      margin-top: 1rem !important;
+
+        .title {
+          font-size: small;
+          text-align: center;
+        }
+
+        .overview {
+            @include text-clamp(4);
+            text-align: justify;
+            font-size: small;
+        }
+    }
+
+    .poster{
+    border-radius: 3%;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+      border-color: none;
+    }
+    
+}

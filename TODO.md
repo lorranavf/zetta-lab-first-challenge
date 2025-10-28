@@ -2,6 +2,8 @@
 - [x] estabelecer ambiente de inicialização com app mínimo
 - [x] separar componentes da aplicação (menu, rodapé, view_all, view_id)
 - [x] reorganizar scripts, templates, and styles 
-- [] selecionar api, documentar acesso à api
-- [] criar módulos da api
-- [] helper somente para funções de facilitação, criar arquivo service (fix)
+- [x] selecionar api, 
+- [ ] documentar acesso à api
+- [x] criar módulos da api
+- [x] helper somente para funções de facilitação, criar arquivo service (fix)
+- [ ] refactorar código

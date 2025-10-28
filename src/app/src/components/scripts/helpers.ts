@@ -1,16 +1,6 @@
 import { ref } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
 
 import data from '../../data/data.json'
-
-export function useRouting() {
-  const router = useRouter()
-  const route = useRoute()
-
-  function go(path: string) { return router.push(path) }
-
-  return { router, route, go }
-}
 
 export function getData() {
   const items = ref(Array.isArray(data) ? data : [])

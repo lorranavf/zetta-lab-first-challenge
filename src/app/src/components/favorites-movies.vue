@@ -16,11 +16,13 @@
 
 <script lang="ts" setup>
 import { ref, onMounted, watch, watchEffect } from 'vue'
-import MovieCard from './movie_card.vue'
-import Pagination from './pagination.vue'
-import { Movie, getMovieDetails } from './scripts/tmdb_services'
+import { Movie } from './scripts/tmdb_types'
+import { getMovieDetails } from './scripts/tmdb_services'
 import { loadFavorites, getFavoriteMovies } from './scripts/local_services'
 import { useRouting } from './scripts/router'
+
+import MovieCard from './movies.vue'
+import Pagination from './pagination.vue'
 
 const movies = ref<Movie[]>([])
 const loading = ref(true)

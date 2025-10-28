@@ -25,7 +25,8 @@
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
 import { useRouting } from './scripts/router'
-import { Review, getResponseMovieReviews } from './scripts/tmdb_services'
+import { Review } from './scripts/tmdb_types'
+import { getResponseMovieReviews } from './scripts/tmdb_services'
 import { formatDate } from './scripts/tmdb_utils'
 import Pagination from './pagination.vue'
 

@@ -50,7 +50,7 @@
 <script lang="ts" setup>
 import { computed, onMounted, ref, watch } from 'vue'
 import { getPosterUrl } from './scripts/tmdb_utils'
-import { Movie } from './scripts/tmdb_services'
+import { Movie } from './scripts/tmdb_types'
 import { loadFavorites, saveFavoriteMovie, removeFavoriteMovie, isMovieFavorited } from './scripts/local_services'
 
 const props = defineProps<{

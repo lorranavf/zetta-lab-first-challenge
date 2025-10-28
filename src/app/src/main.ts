@@ -9,6 +9,7 @@ import 'bootstrap/dist/js/bootstrap.bundle';
 
 import './components/styles/common.scss'
 import './components/styles/_movies.scss'
+import './components/styles/_movie.scss'
 import './components/styles/_pagination.scss'
 
 import Home from './components/home.vue'

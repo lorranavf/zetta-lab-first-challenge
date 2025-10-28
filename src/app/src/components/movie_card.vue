@@ -18,11 +18,15 @@
                 <p class="overview">{{ movie.overview }}</p>
               </div>
 
-              <div class="mt-auto d-flex justify-content-end mt-3">
-                <button class="btn btn-primary" @click="viewMovieDetails(movie.id)">
-                  + Ver mais
+              <div class="card-actions">
+                <button class="btn btn-primary bg-dark border-dark" @click="viewMovieDetails(movie.id)">
+                  + ver detalhes
+                </button>
+                <button class="btn btn-primary bg-dark border-dark" @click="handleFavoriteToggle(movie.id)">
+                  <small>{{ isMovieFavorited(movie.id) ? '❤️' : '🤍' }}</small>
                 </button>
               </div>
+
             </div>
           </div>
         </div>
@@ -31,9 +35,10 @@
 </template>
 
 <script lang="ts" setup>
-
+import { onMounted } from 'vue'
 import { getPosterUrl } from './scripts/tmdb_utils'
 import { Movie } from './scripts/tmdb_services'
+import { loadFavorites, saveFavoriteMovie, removeFavoriteMovie, isMovieFavorited } from './scripts/local_services'
 
 const props = defineProps<{
   page_title: string
@@ -48,4 +53,17 @@ const emit = defineEmits<{
 const viewMovieDetails = (movieId: number) => {
   emit('view-movie-details', movieId)
 }
+
+const handleFavoriteToggle = (movieId: number) => {
+  if (isMovieFavorited(movieId)) {
+    removeFavoriteMovie(movieId)
+  } else {
+    saveFavoriteMovie(movieId)
+  }
+}
+
+onMounted(() => {
+  loadFavorites()
+})
+
 </script>

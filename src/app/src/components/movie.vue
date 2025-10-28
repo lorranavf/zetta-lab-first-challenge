@@ -99,6 +99,8 @@ export default defineComponent({
 }
 
 .movie-info {
+  color: white;
+  
   .h2 {
     margin-bottom: 0.5rem;
   }

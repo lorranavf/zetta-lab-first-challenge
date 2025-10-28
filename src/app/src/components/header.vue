@@ -1,7 +1,7 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar  navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">ZettaLab</a>
+      <a class="navbar-brand" href="#">MovIE</a>
       <button 
       class="navbar-toggler" 
       type="button" 
@@ -18,7 +18,7 @@
           <li class="nav-item"><a class="nav-link" href="#" @click.prevent="goToPage('/')">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="#" @click.prevent="goToPage('/top-movies')">Filmes Conceituados</a></li>
           <li class="nav-item"><a class="nav-link" href="#" @click.prevent="goToPage('/popular-movies')">Filmes Populares</a></li>
-          <li class="nav-item"><a class="nav-link" href="#" @click.prevent="goToPage('/favorite-movies')">Filmes Favoritos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#" @click.prevent="goToPage('/favorites-movies')">Filmes Favoritos</a></li>
         </ul>
       </div>
     </div>

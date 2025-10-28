@@ -1,5 +1,5 @@
 <template>
-  <footer class="bg-light text-center py-3 mt-auto">
+  <footer class="footer">
     <div>
       <small>© Zetta Lab</small><br />
       <small>2025</small><br />

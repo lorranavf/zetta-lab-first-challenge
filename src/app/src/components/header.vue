@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar  navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">MovIE</a>
+      <a class="navbar-brand" href="#" @click.prevent="goToPage('/')">MovIE</a>
       <button 
       class="navbar-toggler" 
       type="button" 
@@ -15,7 +15,6 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="#" @click.prevent="goToPage('/')">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="#" @click.prevent="goToPage('/top-movies')">Filmes Conceituados</a></li>
           <li class="nav-item"><a class="nav-link" href="#" @click.prevent="goToPage('/popular-movies')">Filmes Populares</a></li>
           <li class="nav-item"><a class="nav-link" href="#" @click.prevent="goToPage('/favorites-movies')">Filmes Favoritos</a></li>

@@ -12,27 +12,18 @@
   </section>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script lang="ts" setup>
+const props = defineProps<{
+  currentPage: number
+  totalPages: number
+}>()
 
-export default defineComponent({
-  name: 'Pagination',
-  props: {
-    currentPage: {
-      type: Number,
-      required: true
-    },
-    totalPages: {
-      type: Number,
-      required: true
-    }
-  },
-  emits: ['change-page'],
-  methods: {
-    changePage(page: number) {
-      this.$emit('change-page', page)
-    }
-  }
-})
+const emit = defineEmits<{
+  (e: 'change-page', page: number): void
+}>()
+
+function changePage(page: number) {
+  emit('change-page', page)
+}
 </script>
 

@@ -40,19 +40,14 @@
           <small>{{ isMovieFavorited(movie.id) ? 'Desfavoritar | ❤️' : 'Favoritar | 🤍' }}</small>
         </button>
         </div>
-
       </div>
-
-      
     </div>
-
-    <!-- others -->
-
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script lang="ts" setup>
+import { ref, onMounted } from 'vue'
+import { useRouting } from './scripts/router'
 import { Movie, getMovieDetails } from './scripts/tmdb_services'
 import { getPosterUrl, formatDate, roundVote } from './scripts/tmdb_utils'
 import { loadFavorites, saveFavoriteMovie, removeFavoriteMovie, isMovieFavorited } from './scripts/local_services'
@@ -65,30 +60,18 @@ const handleFavoriteToggle = (movieId: number) => {
   }
 }
 
-export default defineComponent({
-  name: 'Movie',
-  data() {
-    return {
-      movie: {} as Movie,
-      loading: true,
-    }
-  },
-  methods: {
-    getPosterUrl,
-    formatDate,
-    roundVote,
-    handleFavoriteToggle,
-    isMovieFavorited,
-  },
-  async created() {
-    try {
-      const movieId = Number(this.$route.params.id)
-      this.movie = movieId ? await getMovieDetails(movieId) ?? {} : {}
-      loadFavorites()
-    } finally {
-      this.loading = false
-    }
-  },
+const movie = ref<Movie>({} as Movie)
+const loading = ref(true)
+const { route } = useRouting()
+
+onMounted(async () => {
+  try {
+    const movieId = Number(route.params.id)
+    movie.value = movieId ? await getMovieDetails(movieId) ?? {} : {}
+    loadFavorites()
+  } finally {
+    loading.value = false
+  }
 })
 </script>
 
